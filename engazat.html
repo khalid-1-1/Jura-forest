@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>الإنجازات | Jura Forest 🍁</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+    --orange: #ff7a18;
+    --orange-soft: #ffb347;
+    --orange-dark: #c2410c;
+    --deep: #7c2d12;
+
+    --glow: rgba(255,140,0,0.6);
+    --glass: rgba(255,255,255,0.04);
+    --border: rgba(255,140,0,0.2);
+
+    --bg-main: #020617;
+    --bg-dark: #000000;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+background:linear-gradient(180deg,var(--bg-main),var(--bg-dark));
+color:#eee;
+min-height:100vh;
+overflow-x:hidden;
+padding-top:80px;
+}
+
+/* 🌌 خلفية خفيفة */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 20%, rgba(255,140,0,0.15), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(255,69,0,0.15), transparent 40%);
+z-index:-1;
+}
+
+/* NAV */
+.nav-container{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:15px;
+padding:15px;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border);
+z-index:999;
+}
+
+.menu-item{
+padding:10px 18px;
+background:linear-gradient(135deg,var(--orange),var(--orange-soft));
+color:#000;
+font-weight:800;
+text-decoration:none;
+border-radius:999px;
+box-shadow:0 0 15px var(--glow);
+transition:.3s;
+}
+
+.menu-item:hover{
+transform:translateY(-3px) scale(1.05);
+box-shadow:0 0 25px var(--glow);
+}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:90px 6% 50px;
+animation:fadeDown 1s ease;
+}
+
+.hero h1{
+font-size:2.8rem;
+color:var(--orange-soft);
+text-shadow:0 0 25px var(--glow);
+}
+
+.hero p{
+opacity:.7;
+letter-spacing:2px;
+}
+
+/* GRID */
+.achievements{
+max-width:1200px;
+margin:auto;
+padding:40px 6%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:40px;
+}
+
+/* CARD */
+.achievement-card{
+position:relative;
+padding:40px 25px;
+border-radius:26px;
+background:var(--glass);
+border:1px solid var(--border);
+text-align:center;
+box-shadow:
+0 0 25px rgba(255,140,0,0.1),
+inset 0 0 20px rgba(255,140,0,0.1);
+transition:.4s;
+animation:rise 1s ease forwards;
+opacity:0;
+}
+
+/* 🔥 Glow Hover */
+.achievement-card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:
+0 0 40px var(--glow),
+inset 0 0 25px rgba(255,140,0,0.2);
+}
+
+/* الرقم */
+.achievement-number{
+font-size:3.2rem;
+font-weight:900;
+color:var(--orange);
+text-shadow:0 0 25px var(--glow);
+margin-bottom:15px;
+}
+
+/* النص */
+.achievement-text{
+font-size:1.1rem;
+font-weight:700;
+line-height:1.7;
+}
+
+/* لمعة */
+.achievement-card::after{
+content:"";
+position:absolute;
+inset:0;
+border-radius:26px;
+background:linear-gradient(120deg,
+transparent,
+rgba(255,140,0,.25),
+transparent);
+opacity:0;
+transition:.4s;
+}
+.achievement-card:hover::after{
+opacity:1;
+}
+
+/* ANIMATIONS */
+@keyframes fadeDown{
+from{opacity:0;transform:translateY(-40px)}
+to{opacity:1;transform:translateY(0)}
+}
+@keyframes rise{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:30px;
+font-size:12px;
+opacity:.6;
+margin-top:40px;
+border-top:1px solid var(--border);
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav-container">
+<a href="./index.html" class="menu-item">⬅️ الرجوع</a>
+<a href="./developer.html" class="menu-item">المطوّر</a>
+<a href="./rules.html" class="menu-item">القوانين</a>
+</nav>
+
+<header class="hero">
+<h1>🏆 إنجازات جورا فورست 🍁</h1>
+<p>القوة تُكتب بالأفعال… لا بالكلام</p>
+</header>
+
+<section class="achievements">
+
+<div class="achievement-card" style="animation-delay:.4s">
+<div class="achievement-number">14</div>
+<div class="achievement-text">
+نقابات نشطة تعمل<br>بكفاءة عالية
+</div>
+</div>
+
+<div class="achievement-card" style="animation-delay:.6s">
+<div class="achievement-number">01</div>
+<div class="achievement-text">
+أول نقابة في المملكة<br><strong>هورايزن</strong>
+</div>
+</div>
+
+<div class="achievement-card" style="animation-delay:.8s">
+<div class="achievement-number">★</div>
+<div class="achievement-text">
+أفضل مملكة في التنظيم<br>والقوانين
+</div>
+</div>
+
+</section>
+
+<footer>
+© JURA FOREST 🍁 — جميع الحقوق محفوظة
+</footer>
+
+</body>
+</html>

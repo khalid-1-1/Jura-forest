@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نقابات اشورا 🌑</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap');
+
+:root {
+    --moon-light: #e0e0e0;     /* رمادي فاتح (ضوء القمر) */
+    --moon-gray: #757575;      /* رمادي متوسط */
+    --moon-dark: #1a1a1a;      /* أسود كربوني */
+    --moon-void: #050505;      /* أسود مطلق */
+    --lunar-glow: rgba(255, 255, 255, 0.15);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --bg-main: #0a0a0a;
+    --bg-dark: #000000;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    /* خلفية متدرجة من الأسود الرمادي للأسود التام */
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    color: #eee;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+/* NAV */
+.nav-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background-color: transparent !important;
+    z-index: 999;
+    animation: navDrop 0.9s ease forwards;
+}
+
+
+.nav-container {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none;
+    box-shadow: none; 
+}
+
+
+.epic-menu {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.menu-item {
+    position: relative;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #1a1a1a, #000000);
+    color: var(--moon-light); 
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 999px;
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0; /* للأنيميشن */
+}
+
+
+.menu-item:hover{
+transform:translateY(-3px) scale(1.05);
+box-shadow:0 0 25px var(--glow);
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(120vh); }
+}
+
+.menu-item:hover {
+    background: #ffffff;
+    color: #000;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+
+.menu-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #fceeb5,, #f5d300);
+    transition: 0.3s ease;
+    border-radius: 10px;
+}
+
+
+
+.menu-item:hover::after {
+    width: 100%;
+}
+
+    @media (max-width: 768px) {
+    .menu-item {
+        padding: 9px 14px;
+        font-size: 12px;
+    }
+
+    .epic-menu {
+        gap: 10px;
+    }
+}
+/* دخول الأنمي للـ nav */
+.nav-container {
+    animation: navDrop 0.9s ease forwards;
+    transform: translateY(-40px);
+    opacity: 0;
+}
+
+@keyframes navDrop {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animation stagger للأزرار */
+.menu-item {
+    animation: buttonPop 0.6s ease forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.menu-item:nth-child(1) { animation-delay: 0.2s; }
+.menu-item:nth-child(2) { animation-delay: 0.3s; }
+.menu-item:nth-child(3) { animation-delay: 0.4s; }
+.menu-item:nth-child(4) { animation-delay: 0.5s; }
+.menu-item:nth-child(5) { animation-delay: 0.6s; }
+.menu-item:nth-child(6) { animation-delay: 0.7s; }
+
+@keyframes buttonPop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== TITLE ===== */
+.main-title{
+    text-align:center;
+    margin:60px auto 40px;
+    font-size:32px;
+    color:#ddd;
+    border-right:5px solid var(--gold);
+    padding-right:15px;
+    width:fit-content;
+}
+
+/* ===== GRID ===== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 0 6% 80px;
+}
+
+/* إزالة الخط تحت اللينكات */
+.cards a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* CARD */
+.card {
+    position: relative;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: 
+        linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.95)),
+        var(--bg) center/cover no-repeat;
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    transition: 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--moon-gray);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+/* ===== ADMIRAL LABEL ===== */
+.rank {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    z-index: 2;
+}
+
+
+/* TEXT */
+.card h3 {
+    font-size: 24px;
+    color: var(--moon-light);
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.icon{
+    font-size:26px;
+    margin-top:8px;
+}
+
+/* ===== SPECIAL ===== */
+.mother{
+    border:2px solid var(--gold);
+    box-shadow:0 0 50px rgba(255,215,0,0.6);
+}
+
+.developer-badge {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            /* يمكنك تغييرها إلى right إذا أردت */
+            background: rgba(15, 23, 42, 0.6);
+            /* زجاجي داكن */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 165, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 9999;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .developer-badge:hover {
+    transform: translateY(-5px) scale(1.05);
+    /* تغيير لون الحدود إلى البرتقالي */
+    border-color: #ff4500; 
+    /* تغيير لون التوهج إلى البرتقالي مع شفافية 0.2 */
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.2); 
+    background: rgba(15, 23, 42, 0.9);
+}
+
+
+        .developer-badge .text {
+            font-family: 'Cinzel', serif;
+            /* أو أي خط تفضله */
+            font-size: 11px;
+            color: #fff;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+        }
+
+        .developer-badge .code-icon {
+    color: #ff8c00; /* تم التغيير للبرتقالي */
+    font-weight: 900;
+    font-family: monospace;
+    font-size: 14px;
+    animation: blink 2s infinite;
+}
+
+
+        body {
+    animation: pageEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.97);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* زر العودة */
+.back-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #333, #000); 
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    border: 1px solid var(--moon-gray);
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1);
+}
+
+
+/* زر عائم */
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #000; 
+    color: #fff; 
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid var(--moon-light); 
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); 
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+
+.floating-btn:hover {
+    transform: scale(1.1);
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:68px;
+    color:#BCAAA4;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav-container">
+<a href="./index.html" class="menu-item">⬅️ العودة للمملكة</a>
+<a href="./ne8abat.html" class="menu-item">النقابات</a>
+<a href="./a8alem.html" class="menu-item">الأقاليم</a>
+</nav>
+
+<!-- 👑 الحكام -->
+<h2 class="main-title">🌑 حكام اشورا 👑</h2>
+
+<div class="cards">
+
+<a href="javascript:void(0)" class="card" style="--bg:url('./assets/images/jura/atop1.jpg')">
+    <span class="rank">الدوق</span>
+    <h3>شادو</h3>
+    <span class="icon">⬛️</span>
+</a>
+
+<a href="javascript:void(0)" class="card" style="--bg:url('./assets/images/jura/atop2.jpg')">
+    <span class="rank">نائب الدوق</span>
+    <h3>ليفاي</h3>
+    <span class="icon">⚔️</span>
+</a>
+
+</div>
+
+<!-- 🌑 النقابات -->
+<h2 class="main-title">نقابات اشورا 🌑</h2>
+
+<div class="cards">
+
+<a href="javascript:void(0)" class="card" style="--bg:url('./assets/images/ne8abat/soul.jpg')">
+    <span class="rank">شادو</span>
+    <h3>سول</h3>
+    <span class="icon">🎻</span>
+</a>
+
+<a href="javascript:void(0)" class="card" style="--bg:url('./assets/images/ne8abat/velaris.jpg')">
+    <span class="rank">شادو</span>
+    <h3>فيلاريس</h3>
+    <span class="icon">🌙</span>
+</a>
+
+<a href="javascript:void(0)" class="card" style="--bg:url('./assets/images/ne8abat/marly.jpg')">
+    <span class="rank">تسونادي</span>
+    <h3>مارلي</h3>
+    <span class="icon">⚔️</span>
+</a>
+
+<a href="javascript:void(0)" class="card" style="--bg:url('./assets/images/ne8abat/garden.jpg')">
+    <span class="rank">شادو</span>
+    <h3>جاردن</h3>
+    <span class="icon">☂️</span>
+</a>
+
+</div>
+<a href="developer.html" class="developer-badge">
+  <span class="text">𝑲𝒉𝒂𝒍𝒊𝒅 – 𝑨𝒔𝒕𝒂 ♕</span>
+  <span class="code-icon">&lt;/&gt;</span>
+</a>
+
+<div style="text-align:center; margin-top:20px;">
+<a href="#" onclick="history.back(); return false;" class="back-btn">⬅️ العودة</a>
+
+</div>
+
+<footer>
+© 2026 Jura Forest 🍁 - Ashura 🌑
+</footer>
+
+<a href="javascript:void(0)" class="floating-btn">🌑 صحيفة الإقليم</a>
+
+</body>
+</html>

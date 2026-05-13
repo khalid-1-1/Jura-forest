@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>قوانين مملكة JURA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <style>
+        body{
+    margin:0;
+    font-family:'Cairo',sans-serif;
+    background:radial-gradient(circle at top,#0f0f1a,#050509);
+    color:#ddd;
+    overflow-x:hidden;
+}
+
+.fog{
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 30% 30%,rgba(155,220,255,0.08),transparent 40%),
+      radial-gradient(circle at 70% 60%,rgba(192,132,252,0.08),transparent 45%);
+    animation:fogMove 20s infinite alternate;
+    z-index:-1;
+}
+
+@keyframes fogMove{
+    from{transform:translateY(0)}
+    to{transform:translateY(-80px)}
+}
+
+.royal-laws{
+    max-width:900px;
+    margin:auto;
+    padding:120px 20px;
+}
+
+.royal-header{
+    text-align:center;
+    margin-bottom:80px;
+}
+
+.royal-header h1{
+    color:#d4af37;
+    font-size:30px;
+    text-shadow:0 0 25px rgba(212,175,55,0.5);
+}
+
+.royal-header p{
+    color:#c084fc;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.law-scroll{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:22px;
+    padding:30px;
+    margin-bottom:50px;
+    box-shadow:0 0 40px rgba(0,0,0,0.7);
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.8s ease;
+}
+
+.law-scroll.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.law-scroll h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.law-desc{
+    text-align:center;
+    font-size:13px;
+    color:#bbb;
+    margin-bottom:20px;
+}
+
+.law-scroll ul{
+    list-style:none;
+    padding:0;
+}
+
+.law-scroll li{
+    padding:8px 0;
+    border-bottom:1px dashed rgba(255,255,255,0.1);
+}
+
+.danger h2{color:#f87171}
+.warning h2{color:#facc15}
+.death h2{color:#ef4444}
+
+.note{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#facc15;
+}
+
+.royal-footer{
+    text-align:center;
+    margin-top:80px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding-top:30px;
+}
+
+.royal-footer h3{
+    color:#d4af37;
+    margin:15px 0;
+}
+/* 👑 AURA ملكية عامة */
+.royal-laws::before{
+    content:"";
+    position:fixed;
+    inset:-50%;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(212,175,55,0.12), transparent 40%),
+      radial-gradient(circle at 70% 70%, rgba(192,132,252,0.10), transparent 45%);
+    animation:royalPulse 12s infinite alternate;
+    z-index:-2;
+}
+
+@keyframes royalPulse{
+    from{transform:scale(1)}
+    to{transform:scale(1.15)}
+}
+
+/* 👑 العنوان الرئيسي */
+.royal-header h1{
+    position:relative;
+}
+
+.royal-header h1::after{
+    content:"";
+    position:absolute;
+    inset:-20px;
+    background:radial-gradient(circle, rgba(212,175,55,0.35), transparent 70%);
+    filter:blur(25px);
+    z-index:-1;
+    animation:crownGlow 3s infinite alternate;
+}
+
+@keyframes crownGlow{
+    from{opacity:0.6}
+    to{opacity:1}
+}
+/* 🚯 وضع الخطر */
+.death{
+    position:relative;
+    border:1px solid rgba(239,68,68,0.6);
+    box-shadow:0 0 40px rgba(239,68,68,0.25);
+}
+
+/* هالة حمراء */
+.death::before{
+    content:"";
+    position:absolute;
+    inset:-20px;
+    background:radial-gradient(circle, rgba(239,68,68,0.35), transparent 70%);
+    filter:blur(35px);
+    opacity:0;
+    transition:0.5s;
+    z-index:-1;
+}
+
+/* عند الظهور */
+.death.show::before{
+    opacity:1;
+    animation:dangerPulse 1.8s infinite;
+}
+
+@keyframes dangerPulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+    100%{transform:scale(1)}
+}
+
+/* اهتزاز تحذيري */
+.death.show{
+    animation:shake 0.4s ease 2;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0)}
+    25%{transform:translateX(-6px)}
+    50%{transform:translateX(6px)}
+    75%{transform:translateX(-4px)}
+    100%{transform:translateX(0)}
+}
+.death:hover{
+    background:rgba(239,68,68,0.12);
+    box-shadow:0 0 80px rgba(239,68,68,0.6);
+}
+
+.nav-container{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:15px;
+padding:15px;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border);
+z-index:999;
+}
+
+
+
+.epic-menu {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/* الروابط */
+.menu-item {
+    position: relative;
+    padding: 10px 18px;
+
+    background: linear-gradient(135deg, #4e4c4c, #6d7979);
+    color: #0f172a;
+
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 999px;
+
+    box-shadow: 0 6px 16px rgba(47, 50, 52, 0.35);
+    transition: all 0.3s ease;
+}
+
+
+.menu-item:hover {
+    background: linear-gradient(135deg, #4e4c4c, #6d7979);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(47, 50, 52, 0.35);
+}
+
+
+
+/* خط سفلي أنيق */
+.menu-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #9bdcff, #5bbcff);
+    transition: 0.3s ease;
+    border-radius: 10px;
+}
+
+
+
+.menu-item:hover::after {
+    width: 100%;
+}
+
+    @media (max-width: 768px) {
+    .menu-item {
+        padding: 9px 14px;
+        font-size: 12px;
+    }
+
+    .epic-menu {
+        gap: 10px;
+    }
+}
+/* دخول الأنمي للـ nav */
+.nav-container {
+    animation: navDrop 0.9s ease forwards;
+    transform: translateY(-40px);
+    opacity: 0;
+}
+
+@keyframes navDrop {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animation stagger للأزرار */
+.menu-item {
+    animation: buttonPop 0.6s ease forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.menu-item:nth-child(1) { animation-delay: 0.2s; }
+.menu-item:nth-child(2) { animation-delay: 0.3s; }
+.menu-item:nth-child(3) { animation-delay: 0.4s; }
+.menu-item:nth-child(4) { animation-delay: 0.5s; }
+.menu-item:nth-child(5) { animation-delay: 0.6s; }
+.menu-item:nth-child(6) { animation-delay: 0.7s; }
+
+@keyframes buttonPop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+    </style>
+
+<div class="fog"></div>
+<nav class="nav-container">
+    <a href="./index.html" class="menu-item">⬅️ العودة للمملكة</a>
+    <a href="./engazat.html" class="menu-item">انجازات</a>
+        <a href="./developer.html" class="menu-item">المطوّر</a>
+
+</nav>
+
+<section class="royal-laws">
+
+<header class="royal-header">
+    <h1>⚖️ قوانين مملكة 𝑱𝑼𝑹𝑨 𝑭𝑶𝑹𝑬𝑺𝑻 ◜🍁◞</h1>
+    <p>
+        هذه القوانين ليست للقراءة فقط  
+        بل عهد يُلزم كل من يدخل أرض المملكة
+    </p>
+</header>
+
+<!-- المخالفات -->
+<div class="law-scroll danger">
+    <h2>⛔️ المخالفات الملكية</h2>
+    <p class="law-desc">
+        أي خرقٍ لهذه البنود يُسجل على العضو كإنذار رسمي
+        داخل سجل المملكة
+    </p>
+    <ul>
+        <li>إرسال GIF خارج الأنمي</li>
+        <li>الملصقات المخلة أو الكيبوب</li>
+        <li>السبام بجميع أشكاله</li>
+        <li>التشفير أو الإزعاج</li>
+        <li>الهنتاي أو الإيتشي</li>
+        <li>العنصرية أو السخرية</li>
+        <li>السياسة وما يشابهها</li>
+        <li>لغة غير العربية</li>
+        <li>حرق الحلقات</li>
+        <li>التنمر أو الإهانة</li>
+    </ul>
+</div>
+
+<!-- الطرد المؤقت -->
+<div class="law-scroll warning">
+    <h2>⌛️ الطرد المؤقت</h2>
+    <p class="law-desc">
+        الطرد المؤقت هو إنذار أخير  
+        قبل السقوط من حماية المملكة
+    </p>
+    <ul>
+        <li>احتكاك غير لائق</li>
+        <li>الاعتراض على قرارات المشرفين</li>
+    </ul>
+    <span class="note">⚠️ طردان مؤقتان = طرد مؤبد</span>
+</div>
+
+<!-- الطرد المؤبد -->
+<div class="law-scroll death">
+    <h2>🚯 الطرد المؤبد</h2>
+    <p class="law-desc">
+        من يصل إلى هنا  
+        يُمحى اسمه من سجل المملكة
+    </p>
+    <ul>
+        <li>الحرق بجميع أنواعه</li>
+        <li>النشر لقروبات أخرى</li>
+        <li>الهنتاي أو المحتوى غير اللائق</li>
+        <li>التخريب أو سرقة الأعضاء</li>
+        <li>التهديد أو الابتزاز</li>
+        <li>السب والشتم</li>
+        <li>إرسال صور للوجوه</li>
+        <li>افتعال المشاكل</li>
+    </ul>
+</div>
+
+<footer class="royal-footer">
+    <p>↜ 4 إنذارات = طرد يومين</p>
+    <p>↜ 6 إنذارات = طرد مؤبد</p>
+
+    <h3>👑 المؤسس : نـاغـي</h3>
+    <span>╎『 𝑱𝒖𝒓𝒂 𝑭𝒐𝒓𝒆𝒔𝒕 ◜🍁◞』</span>
+</footer>
+
+</section>
+
+<script>
+    const laws = document.querySelectorAll('.law-scroll');
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:0.3});
+
+laws.forEach(law=>observer.observe(law));
+
+</script>
+</body>
+</html>

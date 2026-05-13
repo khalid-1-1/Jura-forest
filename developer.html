@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>المطوّر | JURA FOREST 🍁</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap');
+
+:root{
+--orange:#ff7a18;
+--orange-soft:#ffb347;
+--deep:#7c2d12;
+--glow:rgba(255,140,0,.7);
+--glass:rgba(0,0,0,.6);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+
+body{
+background:radial-gradient(circle at top,#1a0f05,#020617 70%);
+color:#fff;
+overflow-x:hidden;
+}
+
+/* 🎬 CINEMATIC */
+#cinematic{
+position:fixed;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:#000;
+z-index:9999;
+animation:fadeOut 2s forwards;
+animation-delay:2.5s;
+}
+#cinematic h1{
+font-size:50px;
+color:var(--orange);
+text-shadow:0 0 40px var(--glow);
+}
+#cinematic p{opacity:.7;}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden;}
+}
+
+/* 🌫️ خلفية */
+.bg{
+position:fixed;
+inset:0;
+background:url("assets/images/developer.jfif") center/cover;
+filter:brightness(.4) blur(3px);
+z-index:-2;
+}
+.overlay{
+position:fixed;
+inset:0;
+background:linear-gradient(to bottom, rgba(255,120,0,.15), #000);
+z-index:-1;
+}
+
+/* 👑 SECTION */
+.developer{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+/* 👑 TITLE */
+.title{
+font-size:35px;
+margin-bottom:30px;
+color:var(--orange-soft);
+text-shadow:0 0 25px var(--glow);
+}
+
+/* 💎 CARD */
+.dev-card{
+max-width:420px;
+width:100%;
+padding:25px;
+border-radius:22px;
+background:var(--glass);
+border:1px solid rgba(255,140,0,.25);
+box-shadow:0 0 40px rgba(255,140,0,.2);
+text-align:center;
+transition:.4s;
+}
+
+.dev-card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 70px var(--glow);
+}
+
+/* 👑 NAME */
+.dev-name{
+font-size:22px;
+color:var(--orange);
+text-shadow:0 0 20px var(--glow);
+}
+
+/* ROLE */
+.dev-role{
+margin:10px 0;
+color:#ffcf9a;
+}
+
+/* INFO */
+.dev-info{list-style:none;margin:15px 0;}
+.dev-info li{margin:6px 0;}
+
+/* 📱 CONTACT */
+.contact{
+display:flex;
+flex-direction:column;
+gap:10px;
+margin-top:10px;
+}
+.contact-link{
+color:#fff;
+text-decoration:none;
+transition:.3s;
+}
+.contact-link i{color:var(--orange);}
+.contact-link:hover{
+color:var(--orange-soft);
+transform:scale(1.1);
+}
+
+/* 🔥 BUTTON */
+button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+background:linear-gradient(135deg,var(--orange),var(--orange-soft));
+box-shadow:0 0 20px var(--glow);
+transition:.3s;
+}
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 40px var(--glow);
+}
+
+/* 💀 POWER TEXT */
+#power{
+margin-top:15px;
+font-size:16px;
+color:#ffb347;
+text-shadow:0 0 25px var(--glow);
+font-weight:bold;
+}
+
+/* 📳 SHAKE */
+.shake{
+animation:shake .3s;
+}
+@keyframes shake{
+0%{transform:translateX(0)}
+25%{transform:translateX(6px)}
+50%{transform:translateX(-6px)}
+75%{transform:translateX(6px)}
+100%{transform:translateX(0)}
+}
+
+/* 🍁 PARTICLES */
+.leaf{
+position:fixed;
+top:-50px;
+font-size:20px;
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* 🔙 BACK */
+.back{
+margin-top:20px;
+padding:8px 20px;
+border-radius:30px;
+border:1px solid var(--orange);
+color:var(--orange);
+text-decoration:none;
+transition:.3s;
+}
+.back:hover{
+background:var(--orange);
+color:#000;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎬 Intro -->
+<div id="cinematic">
+<h1>JURA FOREST 🍁</h1>
+<p>👁 المطوّر يكتب… والمملكة تُنفذ</p>
+</div>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<section class="developer">
+
+<h1 class="title">⚜️ مطوّر المملكة ⚜️</h1>
+
+<div class="dev-card">
+<h2 class="dev-name">👑 Khalid – Asta 🩸</h2>
+<p class="dev-role">مُهندس النظام — صانع هيبة جورا 🩸</p>
+
+<ul class="dev-info">
+<li>💙 صلِّ عَلىٰ مُحمَّد ❄️</li>
+<li>‌</li>
+<li>⚙️ تصميم أنظمة لا تُكسر</li>
+<li>🔥 بناء هيبة المملكة</li>
+<li>🛡 فرض النظام والسيطرة</li>
+<li>👁 التحكم في التوازن</li>
+</ul>
+
+<div class="contact">
+<a href="https://wa.me/201094647840?text=السلام%20عليكم%20ورحمة%20الله%20وبركاته" class="contact-link">
+<i class="fa-brands fa-whatsapp"></i> 𝑲𝑯𝑨𝑳𝑰𝑫 - 𝑨𝑺𝑻𝑨
+</a>
+<a href="https://www.instagram.com/khalid_gaballah?igsh=MXducnJ4a2pmODdxMA==" target="_blank" class="contact-link">
+        <i class="fa-brands fa-instagram"></i>
+        <span>𝑲𝒉𝒂𝒍𝒊𝒅 - 𝑨𝒔𝒕𝒂</span>
+      </a>
+</div>
+
+<button onclick="showPower()">رؤية الحقيقة</button>
+<p id="power"></p>
+
+</div>
+
+<a href="index.html" class="back">⬅️ الرجوع للمملكة</a>
+
+</section>
+
+<script>
+
+/* 💀 POWER */
+function showPower(){
+const powers=[
+"👑 من يكتب الكود… يكتب المصير",
+"🔥 هنا تُبنى الهيبة… لا تُطلب",
+"⚙️ كل سطر كود = سيطرة",
+"🛡 جورا لا تُحكم… جورا تُفرض",
+"☠️ المطوّر ليس شخص… بل قوة"
+];
+
+const el=document.getElementById("power");
+el.innerText=powers[Math.floor(Math.random()*powers.length)];
+
+document.body.classList.add("shake");
+setTimeout(()=>document.body.classList.remove("shake"),300);
+
+/* 🔊 SOUND */
+let audio=new Audio("https://www.soundjay.com/button/beep-07.wav");
+audio.play();
+}
+
+/* 🩸 LEAVES */
+for(let i=0;i<15;i++){
+let leaf=document.createElement("div");
+leaf.className="leaf";
+leaf.innerHTML="🍁";
+leaf.style.left=Math.random()*100+"%";
+leaf.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(leaf);
+}
+
+</script>
+
+</body>
+</html>

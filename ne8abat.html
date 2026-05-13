@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نقابات الممكلة 🍁</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap');
+
+:root {
+  /* برتقالي خريفي داكن وفخم */
+  --main-bg: #bc4b1c; 
+  --white-soft: #ffffff;
+  --border-soft: rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  /* تدرج لوني انسيابي من البرتقالي المتوسط إلى الداكن العميق */
+  background: linear-gradient(
+    180deg,
+    #d45d2a,
+    #bc4b1c
+  );
+  /* لون نص بني محروق يتناسب مع الخلفية الداكنة */
+  color: #2b1d18;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-top: 80px;
+}
+
+
+
+
+/* NAV */
+.nav-container{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:15px;
+padding:15px;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border);
+z-index:999;
+}
+
+.nav-container {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none; /* لإزالة أي حدود قد تظهر */
+    box-shadow: none; /* لإزالة الظل لو موجود */
+}
+
+
+.epic-menu {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* الروابط */
+.menu-item{
+padding:10px 18px;
+background:linear-gradient(135deg,var(--orange),var(--orange-soft));
+color:#fff;
+font-weight:800;
+text-decoration:none;
+border-radius:999px;
+box-shadow:0 0 15px var(--glow);
+transition:.3s;
+}
+
+.menu-item:hover{
+transform:translateY(-3px) scale(1.05);
+box-shadow:0 0 25px var(--glow);
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(120vh); }
+}
+
+.menu-item:hover {
+    background: linear-gradient(135deg, #ff7a18, #f5c26a);
+    box-shadow: 0 10px 25px rgba(245,194,106,0.4);
+}
+
+
+
+/* خط سفلي أنيق */
+.menu-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #fceeb5,, #f5d300);
+    transition: 0.3s ease;
+    border-radius: 10px;
+}
+
+
+
+.menu-item:hover::after {
+    width: 100%;
+}
+
+    @media (max-width: 768px) {
+    .menu-item {
+        padding: 9px 14px;
+        font-size: 12px;
+    }
+
+    .epic-menu {
+        gap: 10px;
+    }
+}
+/* دخول الأنمي للـ nav */
+.nav-container {
+    animation: navDrop 0.9s ease forwards;
+    transform: translateY(-40px);
+    opacity: 0;
+}
+
+@keyframes navDrop {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animation stagger للأزرار */
+.menu-item {
+    animation: buttonPop 0.6s ease forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.menu-item:nth-child(1) { animation-delay: 0.2s; }
+.menu-item:nth-child(2) { animation-delay: 0.3s; }
+.menu-item:nth-child(3) { animation-delay: 0.4s; }
+.menu-item:nth-child(4) { animation-delay: 0.5s; }
+.menu-item:nth-child(5) { animation-delay: 0.6s; }
+.menu-item:nth-child(6) { animation-delay: 0.7s; }
+
+@keyframes buttonPop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* ===== TITLE ===== */
+.main-title{
+    text-align:center;
+    margin:60px auto 40px;
+    font-size:32px;
+    color:#black;
+    border-right:5px solid var(--gold);
+    padding-right:15px;
+    width:fit-content;
+}
+
+/* ===== GRID ===== */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+    padding:0 6% 80px;
+}
+
+/* ===== CARD ===== */
+.card{
+    position:relative;
+    height:260px;
+    border-radius:22px;
+    overflow:hidden;
+
+    background:
+      linear-gradient(to bottom,rgba(0,0,0,0.25),rgba(0,0,0,0.85)),
+      var(--bg) center/cover no-repeat;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    border:1px solid var(--border);
+    box-shadow:0 20px 40px rgba(0,0,0,0.6);
+    transition:0.5s ease;
+}
+
+.card-link {
+  text-decoration: none; /* لإزالة الخط تحت النص */
+  color: inherit;        /* ليرث النص لونه الأصلي من العناصر الأب */
+  display: block;        /* ليغطي الرابط مساحة البطاقة بالكامل */
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 40px rgba(255,215,0,0.35);
+}
+
+/* ===== ADMIRAL LABEL ===== */
+.rank{
+    position:absolute;
+    top:18px;
+    right:18px;
+
+    font-size:11px;
+    letter-spacing:2px;
+    padding:6px 14px;
+
+    color:#d91f07; /* بنفسجي غامق */
+    border:1px solid #d92828;
+    border-radius:20px;
+
+    background:rgba(20,10,40,0.75);
+    backdrop-filter:blur(6px);
+    box-shadow:0 0 12px rgba(237, 70, 58, 0.6);
+    z-index:2;
+}
+
+/* ===== TEXT ===== */
+.card h3{
+    font-size:26px;
+    margin-bottom:10px;
+
+    color:#d4af37; /* ذهبي */
+    font-weight:900;
+    text-shadow:
+        0 0 10px rgba(212,175,55,0.6),
+        0 0 20px rgba(212,175,55,0.3);
+}
+.card:hover h3{
+    text-shadow:
+        0 0 15px rgba(255,215,0,0.9),
+        0 0 30px rgba(255,215,0,0.6);
+}
+
+.card:hover .rank{
+    box-shadow:0 0 18px rgba(237, 58, 58, 0.9);
+}
+
+
+.icon{
+    font-size:28px;
+}
+
+/* ===== SPECIAL ===== */
+.mother{
+    border:2px solid var(--gold);
+    box-shadow:0 0 50px rgba(255,215,0,0.6);
+}
+
+.developer-badge {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            /* يمكنك تغييرها إلى right إذا أردت */
+            background: rgba(15, 23, 42, 0.6);
+            /* زجاجي داكن */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 165, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 9999;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .developer-badge:hover {
+    transform: translateY(-5px) scale(1.05);
+    /* تغيير لون الحدود إلى البرتقالي */
+    border-color: #ff4500; 
+    /* تغيير لون التوهج إلى البرتقالي مع شفافية 0.2 */
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.2); 
+    background: rgba(15, 23, 42, 0.9);
+}
+
+
+        .developer-badge .text {
+            font-family: 'Cinzel', serif;
+            /* أو أي خط تفضله */
+            font-size: 11px;
+            color: #fff;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+        }
+
+        .developer-badge .code-icon {
+    color: #ff8c00; /* تم التغيير للبرتقالي */
+    font-weight: 900;
+    font-family: monospace;
+    font-size: 14px;
+    animation: blink 2s infinite;
+}
+
+
+        body {
+    animation: pageEnter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.97);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+.card {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+    transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at top,
+        rgba(255,255,255,0.25),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.mother {
+    animation: pulseGlow 3s infinite;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 20px rgba(255,215,0,0.3);
+    }
+    50% {
+        box-shadow: 0 0 60px rgba(255,215,0,0.75);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255,215,0,0.3);
+    }
+}
+.card {
+    transform-style: preserve-3d;
+}
+
+.card:hover {
+    transform: translateY(-15px) rotateX(6deg) rotateY(-6deg) scale(1.03);
+}
+.main-title {
+    animation: titlePop 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes titlePop {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotateX(20deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotateX(0);
+    }
+}
+#particles {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+.cards {
+    perspective: 1200px;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+.card.shake {
+    animation: shake 0.35s;
+}
+.falling-icons {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* الرموز ما تتأثر بالنقر */
+    z-index: -1; /* تبقى تحت كل المحتوى */
+    overflow: hidden;
+}
+.falling-icons span {
+    position: absolute;
+    font-size: 18px;
+    opacity: 0.6;
+    animation: fall linear infinite;
+}
+
+/* keyframes لسقوط الرموز */
+@keyframes fall {
+    0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 55px;
+    margin-top: 20px;
+    color: #BCAAA4; /* 👈 لون النص */
+}
+
+</style>
+</head>
+
+<body>
+<canvas id="particles"></canvas>
+
+<nav class="nav-container">
+
+<a href="./index.html" class="menu-item">⬅️ العودة للمملكة</a>
+<a href="./rules.html" class="menu-item">القوانين</a>
+<a href="./a8alem.html" class="menu-item">الأقاليم</a>
+
+</nav>
+
+<h2 class="main-title" >🍁 نقابات المملكة 🍁 <p style="text-align: center;">اضغط على النقابة لعرض معلوماتها</p>
+</h2>
+
+<div class="cards">
+
+<a href="javascript:void(0)" class="card-link">
+    <div class="card mother" style="--bg:url('./assets/images/ne8abat/horizon.jpg')">
+    <span class="rank">شوتو   </span>
+    <h3>هورايزن</h3>
+    <span class="icon">🪐</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+    <div class="card mother" style="--bg:url('./assets/images/ne8abat/espada.jpg')">
+        <span class="rank">استا</span>
+        <h3>اسبادا</h3>
+        <span class="icon">🕸</span>
+    </div>
+</a>
+
+<a href="javascript:void(0)" class="card-link">
+    <div class="card mother" style="--bg:url('./assets/images/ne8abat/fenix.jpg')">
+    <span class="rank">هولمز / مادارا </span>
+    <h3>فينيكس </h3>
+    <span class="icon">🐦‍🔥</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+    <div class="card mother" style="--bg:url('./assets/images/ne8abat/feonka.jpg')">
+    <span class="rank">سيرا </span>
+    <h3>فيونكا </h3>
+    <span class="icon">🎀</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card" style="--bg:url('./assets/images/ne8abat/feory.jpg')">
+    <span class="rank">كيوراكو</span>
+    <h3>فيوري </h3>
+    <span class="icon">⚱️</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card" style="--bg:url('./assets/images/ne8abat/mestris.jpg')">
+    <span class="rank">كلاين  </span>
+    <h3>ميستريس </h3>
+    <span class="icon">🎩</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card" style="--bg:url('./assets/images/ne8abat/ores.jpg')">
+    <span class="rank">باتشيرا</span>
+    <h3>اوريس  </h3>
+    <span class="icon">♣️</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card mother" style="--bg:url('./assets/images/ne8abat/reyatsu.jpg')">
+    <span class="rank">سونغ</span>
+    <h3>رياتسو </h3>
+    <span class="icon">🍃</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card mother" style="--bg:url('./assets/images/ne8abat/crystal.jpg')">
+    <span class="rank">غوهان</span>
+    <h3>كريستال</h3>
+    <span class="icon">👑</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card mother" style="--bg:url('./assets/images/ne8abat/soul.jpg')">
+    <span class="rank">شادو</span>
+    <h3>سول  </h3>
+    <span class="icon">🎻</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card mother" style="--bg:url('./assets/images/ne8abat/velaris.jpg')">
+    <span class="rank">شادو </span>
+    <h3>فيلاريس </h3>
+    <span class="icon">🌙</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card mother" style="--bg:url('./assets/images/ne8abat/marly.jpg')">
+    <span class="rank">تسونادي</span>
+    <h3>مارلي  </h3>
+    <span class="icon">⚔️</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card mother" style="--bg:url('./assets/images/ne8abat/garden.jpg')">
+    <span class="rank">شادو</span>
+    <h3>جاردن  </h3>
+    <span class="icon">☂️</span>
+</div>
+
+<a href="javascript:void(0)" class="card-link">
+<div class="card mother" style="--bg:url('./assets/images/ne8abat/blood.jpg')">
+    <span class="rank">سونغ</span>
+    <h3>بلود  </h3>
+    <span class="icon">🩸</span>
+</div>
+
+</div>
+  <div class="falling-icons" id="fallingIcons"></div>
+<a href="developer.html" class="developer-badge">
+  <span class="text">𝑲𝒉𝒂𝒍𝒊𝒅 – 𝑨𝒔𝒕𝒂 ♕</span>
+  <span class="code-icon">&lt;/&gt;</span>
+</a>
+
+<footer>
+© 2026 Jura Forest 🍁 - نقابات المملكة
+</footer>
+
+<script>
+    document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+        card.classList.add("shake");
+        setTimeout(() => card.classList.remove("shake"), 350);
+    });
+});
+//     document.addEventListener("mousemove", e => {
+//     const x = (e.clientX / window.innerWidth - 0.5) * 10;
+//     const y = (e.clientY / window.innerHeight - 0.5) * -10;
+
+//     document.querySelectorAll(".card").forEach(card => {
+//         card.style.transform += ` rotateY(${x}deg) rotateX(${y}deg)`;
+//     });
+// });
+    const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+const particles = [];
+const COUNT = 60;
+
+for (let i = 0; i < COUNT; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.4,
+        dy: (Math.random() - 0.5) * 0.4
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(255,255,255,0.35)";
+
+    particles.forEach(p => {
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+}
+animate();
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.2 });
+
+cards.forEach(card => observer.observe(card));
+
+const icons = ["🌙","☘️","⚡️","🌪","🎻","⚔️","🎩","🌑","🪐","⚱️","🍁","🎀","🦅","⚽️","🍃","⚱️","☣️","♣️","🩸","👑","🐦‍🔥","🎻","🍃","🕸","🦃","🕷",];
+
+const container = document.getElementById("fallingIcons");
+const count = 26; // عدد الرموز المتساقطة
+
+for(let i = 0; i < count; i++){
+    const icon = document.createElement("span");
+    icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+    icon.style.left = Math.random() * 100 + "vw"; // موقع عشوائي أفقي
+    icon.style.animationDuration = (Math.random() * 5 + 5) + "s"; // سرعة عشوائية
+    icon.style.fontSize = (Math.random() * 24 + 14) + "px"; // حجم عشوائي
+    container.appendChild(icon);
+}
+
+</script>
+
+</body>
+</html>
