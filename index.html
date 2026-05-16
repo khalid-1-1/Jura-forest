@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jura Forest 🍁</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --main:#ff7a18;
+    --main-dark:#e06b0f;
+    --glow:rgba(255,140,0,.7);
+    --glow-soft:rgba(255,140,0,.3);
+    --bg:#020617;
+    --glass:rgba(0,0,0,.6);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Cairo", sans-serif;}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:#fff;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+/* ════════════════════════════════════════
+   🎬 LOADING SCREEN
+   ════════════════════════════════════════ */
+.loader{
+    position:fixed;
+    inset:0;
+    background:var(--bg);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    flex-direction:column;
+    gap:20px;
+}
+
+.loader h1{
+    font-size:clamp(24px, 5vw, 40px);
+    animation:pulse 1.5s ease-in-out infinite;
+    text-shadow:0 0 30px var(--main);
+    letter-spacing:3px;
+}
+
+.loader p{
+    font-size:16px;
+    opacity:.7;
+    animation:pulse 1.5s ease-in-out infinite .5s;
+}
+
+.loader-bar{
+    width:200px;
+    height:3px;
+    background:rgba(255,255,255,.1);
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.loader-bar::after{
+    content:"";
+    display:block;
+    width:0%;
+    height:100%;
+    background:var(--main);
+    animation:loadBar 2s ease forwards;
+    box-shadow:0 0 10px var(--main);
+}
+
+@keyframes loadBar{
+    to{width:100%;}
+}
+
+@keyframes pulse{
+    0%,100%{opacity:1;transform:scale(1);}
+    50%{opacity:.4;transform:scale(.95);}
+}
+
+/* ════════════════════════════════════════
+   🌌 BACKGROUND - ثابتة مش بتتحرك
+   ════════════════════════════════════════ */
+.parallax{
+    position:fixed;
+    inset:0;
+    background:url("assets/images/jura/juraa.jpg") center/cover no-repeat;
+    z-index:-2;
+}
+
+.parallax::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(2,6,23,.3) 0%, rgba(2,6,23,.7) 50%, var(--bg) 100%);
+}
+
+/* ════════════════════════════════════════
+   ⭐ STARS
+   ════════════════════════════════════════ */
+.stars{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.stars::before{
+    content:"";
+    position:absolute;
+    inset:-200%;
+    background:
+        radial-gradient(2px 2px at 20% 30%,#fff,transparent),
+        radial-gradient(1.5px 1.5px at 70% 80%,#fff,transparent),
+        radial-gradient(1px 1px at 40% 60%,rgba(255,200,100,.8),transparent),
+        radial-gradient(2px 2px at 80% 20%,#fff,transparent),
+        radial-gradient(1px 1px at 10% 90%,rgba(255,255,255,.6),transparent);
+    animation:stars 120s linear infinite;
+}
+
+@keyframes stars{
+    to{transform:translateY(600px) rotate(2deg);}
+}
+
+/* ════════════════════════════════════════
+   🍁 LEAVES
+   ════════════════════════════════════════ */
+.leaf{
+    position:fixed;
+    top:-60px;
+    font-size:20px;
+    pointer-events:none;
+    z-index:100;
+    filter:drop-shadow(0 0 5px rgba(255,120,0,.5));
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{transform:translateY(0) rotate(0deg) translateX(0); opacity:1;}
+    25%{transform:translateY(25vh) rotate(90deg) translateX(20px);}
+    50%{transform:translateY(50vh) rotate(180deg) translateX(-20px);}
+    75%{transform:translateY(75vh) rotate(270deg) translateX(15px);}
+    100%{transform:translateY(110vh) rotate(360deg) translateX(0); opacity:0;}
+}
+
+/* ════════════════════════════════════════
+   📍 NAVIGATION
+   ════════════════════════════════════════ */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    padding:12px 20px;
+    background:rgba(0,0,0,.5);
+    backdrop-filter:blur(20px) saturate(1.5);
+    -webkit-backdrop-filter:blur(20px) saturate(1.5);
+    border-bottom:1px solid rgba(255,122,24,.15);
+    z-index:9999;
+    flex-wrap:wrap;
+    transition:all .4s ease;
+}
+
+nav.scrolled{
+    background:rgba(0,0,0,.85);
+    padding:8px 20px;
+    box-shadow:0 5px 30px rgba(0,0,0,.5);
+}
+
+nav a{
+    padding:8px 16px;
+    border-radius:12px;
+    background:rgba(255,122,24,0.08);
+    border:1px solid rgba(255,122,24,0.2);
+    color:var(--main);
+    text-decoration:none;
+    font-weight:700;
+    font-size:13px;
+    white-space:nowrap;
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+    position:relative;
+    overflow:hidden;
+}
+
+nav a::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, var(--main), #ff4500);
+    opacity:0;
+    transition:opacity .35s;
+    z-index:-1;
+}
+
+nav a:hover{
+    color:#000;
+    transform:translateY(-2px);
+    box-shadow:0 5px 25px var(--glow);
+    border-color:transparent;
+}
+
+nav a:hover::before{
+    opacity:1;
+}
+
+/* ════════════════════════════════════════
+   🏛️ HERO SECTION
+   ════════════════════════════════════════ */
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 20px 60px;
+    position:relative;
+}
+
+.hero h1{
+    font-size:clamp(36px, 8vw, 80px);
+    font-weight:900;
+    text-shadow:0 0 40px var(--main), 0 0 80px rgba(255,100,0,.3);
+    animation:fadeUp 1.2s ease forwards;
+    opacity:0;
+    line-height:1.2;
+    background:linear-gradient(135deg, #fff 0%, var(--main) 50%, #ff4500 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+}
+
+.hero p{
+    font-size:clamp(14px, 3vw, 22px);
+    opacity:.8;
+    margin-top:15px;
+    letter-spacing:8px;
+    text-transform:uppercase;
+    animation:fadeUp 1.2s ease .4s forwards;
+    opacity:0;
+    color:var(--main);
+    text-shadow:0 0 20px var(--glow);
+}
+
+.hero-line{
+    width:100px;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--main), transparent);
+    margin:25px auto;
+    animation:fadeUp 1.2s ease .6s forwards, glowLine 2s ease-in-out infinite;
+    opacity:0;
+}
+
+@keyframes glowLine{
+    0%,100%{opacity:.5;}
+    50%{opacity:1;box-shadow:0 0 20px var(--main);}
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(50px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* ════════════════════════════════════════
+   📦 INTRO BOX
+   ════════════════════════════════════════ */
+.intro{
+    max-width:850px;
+    margin:60px auto;
+    padding:50px 40px;
+    border-radius:30px;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border:1px solid rgba(255,122,24,.15);
+    box-shadow:0 0 60px rgba(255,100,0,.15), inset 0 1px 0 rgba(255,255,255,.05);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+.intro.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.intro::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:conic-gradient(from 0deg, transparent, rgba(255,122,24,.1), transparent 30%);
+    animation:rotateBorder 8s linear infinite;
+    pointer-events:none;
+}
+
+.intro::after{
+    content:"";
+    position:absolute;
+    inset:2px;
+    background:rgba(0,0,0,.9);
+    border-radius:28px;
+    z-index:0;
+}
+
+.intro > *{
+    position:relative;
+    z-index:1;
+}
+
+@keyframes rotateBorder{
+    to{transform:rotate(360deg);}
+}
+
+.intro h1{
+    font-size:clamp(18px, 4vw, 28px);
+    line-height:2;
+    font-weight:700;
+}
+
+.intro h1 span{
+    display:block;
+    margin:8px 0;
+}
+
+/* ════════════════════════════════════════
+   🎞️ SLIDER - ضخم
+   ════════════════════════════════════════ */
+.slider-section{
+    padding:60px 20px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+.slider-section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.slider{
+    position:relative;
+    width:min(98%, 1400px);
+    margin:0 auto;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.5), 0 0 40px rgba(255,100,0,.1);
+    border:1px solid rgba(255,122,24,.2);
+}
+
+.slide{
+    display:none;
+    position:relative;
+    animation:slideIn .6s ease;
+}
+
+.slide.active{
+    display:block;
+}
+
+@keyframes slideIn{
+    from{opacity:0;transform:scale(1.05);}
+    to{opacity:1;transform:scale(1);}
+}
+
+.slide img{
+    width:100%;
+    height:750px;
+    object-fit:cover;
+    display:block;
+}
+
+.slide-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(0deg, rgba(0,0,0,.8) 0%, transparent 50%, rgba(0,0,0,.3) 100%);
+    pointer-events:none;
+}
+
+.toggle-btn{
+    position:absolute;
+    right:20px;
+    bottom:80px;
+    padding:10px 20px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg, var(--main), #ff4500);
+    color:#000;
+    font-weight:900;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 0 20px var(--glow);
+    transition:all .3s ease;
+    z-index:10;
+    letter-spacing:1px;
+}
+
+.toggle-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 30px var(--glow), 0 0 60px rgba(255,100,0,.3);
+}
+
+.info{
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(10px);
+    padding:12px 25px;
+    border-radius:15px;
+    border:1px solid rgba(255,122,24,.2);
+    opacity:0;
+    pointer-events:none;
+    transition:all .4s ease;
+    white-space:nowrap;
+    box-shadow:0 5px 25px rgba(0,0,0,.5);
+}
+
+.info p{
+    font-size:15px;
+    font-weight:700;
+    color:var(--main);
+}
+
+.slide.active-info .info{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* Slider Controls */
+.slider-controls{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:25px;
+}
+
+.slider-btn{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:2px solid var(--main);
+    background:rgba(255,122,24,.1);
+    color:var(--main);
+    font-size:18px;
+    cursor:pointer;
+    transition:all .3s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.slider-btn:hover{
+    background:var(--main);
+    color:#000;
+    box-shadow:0 0 20px var(--glow);
+    transform:scale(1.1);
+}
+
+.slider-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:15px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:rgba(255,255,255,.2);
+    cursor:pointer;
+    transition:all .3s ease;
+    border:1px solid transparent;
+}
+
+.dot.active{
+    background:var(--main);
+    box-shadow:0 0 10px var(--glow);
+    transform:scale(1.3);
+}
+
+.dot:hover{
+    background:rgba(255,122,24,.5);
+}
+
+/* ════════════════════════════════════════
+   💎 CARDS SECTION - ضخمة
+   ════════════════════════════════════════ */
+.cards-section{
+    padding:80px 20px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+.cards-section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+/* 🎨 الألوان: أصفر + أخضر + رمادي بس */
+.changing-color{
+    display:inline-block;
+    font-size:clamp(32px, 6vw, 52px);
+    font-weight:900;
+    animation:colorShift 5s infinite;
+    letter-spacing:2px;
+}
+
+@keyframes colorShift{
+    0%   { color: #ffff00; text-shadow:0 0 40px rgba(255,255,0,.6), 0 0 80px rgba(255,255,0,.3); }
+    33%  { color: #00ff00; text-shadow:0 0 40px rgba(0,255,0,.6), 0 0 80px rgba(0,255,0,.3); }
+    66%  { color: #808080; text-shadow:0 0 40px rgba(128,128,128,.6), 0 0 80px rgba(128,128,128,.3); }
+    100% { color: #ffff00; text-shadow:0 0 40px rgba(255,255,0,.6), 0 0 80px rgba(255,255,0,.3); }
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    width:min(98%, 1500px);
+    margin:0 auto;
+}
+
+.card{
+    width:500px;
+    height:400px;
+    border-radius:24px;
+    overflow:hidden;
+    position:relative;
+    transition:all .5s cubic-bezier(.4,0,.2,1);
+    transform-style:preserve-3d;
+    border:1px solid rgba(255,122,24,.15);
+    box-shadow:0 10px 40px rgba(0,0,0,.4);
+    cursor:pointer;
+    text-decoration:none;
+    display:block;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,.9) 100%);
+    z-index:1;
+    transition:opacity .4s;
+}
+
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:all .6s ease;
+}
+
+.card:hover{
+    transform:translateY(-10px) rotateY(8deg) scale(1.03);
+    box-shadow:0 25px 60px rgba(255,100,0,.25), 0 0 40px rgba(255,122,24,.15);
+    border-color:rgba(255,122,24,.4);
+}
+
+.card:hover img{
+    transform:scale(1.15);
+}
+
+.card-title{
+    position:absolute;
+    bottom:20px;
+    left:0;
+    right:0;
+    text-align:center;
+    z-index:2;
+    font-size:24px;
+    font-weight:900;
+    color:#fff;
+    text-shadow:0 2px 10px rgba(0,0,0,.8);
+    padding:0 15px;
+    transition:all .3s;
+}
+
+.card:hover .card-title{
+    transform:translateY(-5px);
+    color:var(--main);
+}
+
+.card-shine{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(105deg, transparent 40%, rgba(255,255,255,.1) 50%, transparent 60%);
+    z-index:3;
+    transform:translateX(-100%);
+    transition:transform .6s;
+    pointer-events:none;
+}
+
+.card:hover .card-shine{
+    transform:translateX(100%);
+}
+
+/* ════════════════════════════════════════
+   🔘 FLOAT BUTTONS
+   ════════════════════════════════════════ */
+.float{
+    position:fixed;
+    bottom:25px;
+    padding:12px 22px;
+    border-radius:50px;
+    background:linear-gradient(135deg, var(--main), #ff4500);
+    color:#000;
+    font-weight:900;
+    font-size:13px;
+    text-decoration:none;
+    box-shadow:0 5px 25px var(--glow);
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+    z-index:9998;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.float:hover{
+    transform:scale(1.08) translateY(-3px);
+    box-shadow:0 10px 40px var(--glow), 0 0 60px rgba(255,100,0,.3);
+}
+
+.float::before{
+    content:"";
+    position:absolute;
+    inset:-3px;
+    border-radius:50px;
+    background:linear-gradient(135deg, var(--main), #ff4500, var(--main));
+    z-index:-1;
+    opacity:0;
+    filter:blur(8px);
+    transition:opacity .3s;
+}
+
+.float:hover::before{
+    opacity:.6;
+}
+
+.left-f{left:20px;}
+.right-f{right:20px;}
+
+/* ════════════════════════════════════════
+   🦶 FOOTER
+   ════════════════════════════════════════ */
+.footer{
+    background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,.9) 30%, #000 100%);
+    padding:80px 20px 40px;
+    text-align:center;
+    position:relative;
+    border-top:1px solid rgba(255,122,24,.1);
+}
+
+.footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:200px;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--main), transparent);
+}
+
+.footer h2{
+    color:var(--main);
+    margin-bottom:15px;
+    font-size:clamp(22px, 4vw, 32px);
+    text-shadow:0 0 20px var(--glow);
+    letter-spacing:2px;
+}
+
+.footer p{
+    opacity:.7;
+    margin-bottom:30px;
+    font-size:15px;
+    max-width:500px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.8;
+}
+
+.links{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.links a{
+    color:#fff;
+    text-decoration:none;
+    padding:10px 22px;
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    transition:all .35s ease;
+    font-weight:700;
+    font-size:14px;
+    position:relative;
+    overflow:hidden;
+}
+
+.links a::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, var(--main), #ff4500);
+    opacity:0;
+    transition:opacity .35s;
+    z-index:-1;
+}
+
+.links a:hover{
+    color:#000;
+    transform:translateY(-3px);
+    box-shadow:0 5px 20px var(--glow);
+    border-color:transparent;
+}
+
+.links a:hover::before{
+    opacity:1;
+}
+
+.copy{
+    margin-top:30px;
+    font-size:13px;
+    opacity:.4;
+    letter-spacing:1px;
+}
+
+/* ════════════════════════════════════════
+   📱 RESPONSIVE
+   ════════════════════════════════════════ */
+@media(max-width:1200px){
+    .card{width:450px;height:360px;}
+    .slide img{height:600px;}
+}
+
+@media(max-width:1024px){
+    .card{width:400px;height:320px;}
+    .slide img{height:550px;}
+}
+
+@media(max-width:768px){
+    .slide img{height:400px;}
+    .card{width:100%;max-width:500px;height:350px;}
+    .float{font-size:11px;padding:10px 16px;}
+    .left-f{left:10px;}
+    .right-f{right:10px;}
+    .toggle-btn{bottom:70px;right:15px;font-size:14px;padding:8px 14px;}
+    .info{padding:8px 16px;}
+    .info p{font-size:13px;}
+}
+
+@media(max-width:480px){
+    nav a{padding:6px 10px;font-size:11px;}
+    .slide img{height:300px;}
+    .card{height:280px;}
+}
+
+/* ════════════════════════════════════════
+   ✨ PARTICLES
+   ════════════════════════════════════════ */
+.particle{
+    position:fixed;
+    width:4px;
+    height:4px;
+    background:var(--main);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:1;
+    opacity:.6;
+    animation:particleFloat 15s linear infinite;
+}
+
+@keyframes particleFloat{
+    0%{transform:translateY(100vh) scale(0);opacity:0;}
+    10%{opacity:.6;}
+    90%{opacity:.6;}
+    100%{transform:translateY(-100px) scale(1);opacity:0;}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:var(--bg);
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--main);
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--main-dark);
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+    <h1>🍁 JURA FOREST 🍁</h1>
+    <p>Loading Kingdom...</p>
+    <div class="loader-bar"></div>
+</div>
+
+<div class="parallax" id="parallax"></div>
+<div class="stars"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+    <a href="ranks.html">الرتب العليا</a>
+    <a href="ne8abat.html">النقابات</a>
+    <a href="rules.html">القوانين</a>
+    <a href="a8alem.html">الأقاليم</a>
+    <a href="achievements.html">الإنجازات</a>
+    <a href="developer.html">المطور</a>
+</nav>
+
+<!-- FLOAT -->
+<a href="developer.html" class="float left-f">👑 𝑲𝒉𝒂𝒍𝒊𝒅 - 𝑨𝒔𝒕𝒂</a>
+<a href="https://chat.whatsapp.com/L2zHMY6FSTS0m6SlFhVdtS" class="float right-f">🍁 صحيفة المملكة</a>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>🍁 مملكة جورا فورست 🍁</h1>
+    <div class="hero-line"></div>
+    <p>WELCOME TO JURA FOREST</p>
+</section>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+    <h1>
+        <span>🍁 𝐉𝐔𝐑𝐀 𝐅𝐎𝐑𝐄𝐒𝐓 🍁</span>
+        <span>🌲 جذور ثابتة ، وقوة لا تُرى لكنها تَنمو في قلوبنا 🌲</span>
+        <span>🤍 اللهم انصر المسلمين في كل مكان 🤍</span>
+    </h1>
+</div>
+
+<!-- SLIDER -->
+<div class="slider-section" id="sliderSection">
+    <div class="slider" id="slider">
+        <div class="slide active">
+            <img src="assets/images/jura/nagii.jpg" alt="Nagi">
+            <div class="slide-overlay"></div>
+            <button class="toggle-btn">𝑵𝑨𝑮𝑰</button>
+            <div class="info"><p>👑 لورد المملكة ⚽️</p></div>
+        </div>
+        <div class="slide">
+            <img src="assets/images/jura/isagii.jpg" alt="Isagi">
+            <div class="slide-overlay"></div>
+            <button class="toggle-btn">𝑰𝑺𝑨𝑮𝑰</button>
+            <div class="info"><p>⚽ نائب اللورد 🧩</p></div>
+        </div>
+        <div class="slide">
+            <img src="assets/images/jura/shotoo.jpg" alt="Shoto">
+            <div class="slide-overlay"></div>
+            <button class="toggle-btn">𝑺𝑯𝑶𝑻𝑶</button>
+            <div class="info"><p>❄ مستشار اللورد 🔥</p></div>
+        </div>
+        
+        <div class="slide">
+            <img src="assets/images/jura/Klllein.jpg" alt="Klein">
+            <div class="slide-overlay"></div>
+            <button class="toggle-btn">𝑲𝑳𝑬𝑰𝑵</button>
+            <div class="info"><p>🎩 ميرثال المملكة 🎓</p></div>
+        </div>
+    </div>
+    
+        <div class="slide">
+            <img src="assets/images/jura/assta.jpg" alt="Asta">
+            <div class="slide-overlay"></div>
+            <button class="toggle-btn">𝑨𝑺𝑻𝑨</button>
+            <div class="info"><p>👨🏻‍💻 مطوّر المملكة 🩸</p></div>
+        </div>
+    </div>
+
+    <div class="slider-controls">
+        <button class="slider-btn" onclick="prevSlide()">❮</button>
+        <button class="slider-btn" onclick="nextSlide()">❯</button>
+    </div>
+    <div class="slider-dots" id="dots"></div>
+</div>
+
+<!-- CARDS -->
+<div class="cards-section" id="cardsSection">
+    <div class="section-title">
+        <span class="changing-color">الأقاليم</span>
+    </div>
+    <div class="cards">
+        <a href="nagasaki.html" class="card">
+            <img src="assets/images/jura/nagasakii.jpg" alt="Nagasaki">
+            <div class="card-shine"></div>
+            <div class="card-title">ناجازاكي</div>
+        </a>
+        <a href="ashura.html" class="card">
+            <img src="assets/images/jura/ashuraa.jpg" alt="Ashura">
+            <div class="card-shine"></div>
+            <div class="card-title">أشورا</div>
+        </a>
+        <a href="frood.html" class="card">
+            <img src="assets/images/jura/frood.jpg" alt="Frood">
+            <div class="card-shine"></div>
+            <div class="card-title">فرود</div>
+        </a>
+    </div>
+</div>
+
+<footer class="footer">
+    <h2>👑 JURA FOREST 👑</h2>
+    <p>مملكة خيالية مستوحاه من عالم الأنمي تجمع القوة، الشرف، والتطور</p>
+    <div class="links">
+        <a href="https://wa.me/972566891104?text=السلام%20عليكم%20ورحمة%20الله%20وبركاته">Lord</a>
+        <a href="developer.html">Developer</a>
+        <a href="mailto:kingdom.of.jura.forest@gmail.com">Gmail</a>
+        <a href="https://chat.whatsapp.com/L2zHMY6FSTS0m6SlFhVdtS">WhatsApp</a>
+    </div>
+    <p class="copy">© 2026 Kingdom | Jura Forest 🍁</p>
+</footer>
+
+<script>
+/* ⏳ LOADER */
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById("loader").style.opacity="0";
+        setTimeout(() => {
+            document.getElementById("loader").style.display="none";
+        }, 500);
+    }, 2200);
+});
+
+/* 📍 NAV SCROLL EFFECT */
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if(window.scrollY > 50){
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+
+/* 🎞️ SLIDER */
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+const totalSlides = slides.length;
+
+// Create dots
+const dotsContainer = document.getElementById('dots');
+for(let i = 0; i < totalSlides; i++){
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+}
+
+function updateDots(){
+    document.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === currentSlide);
+    });
+}
+
+function showSlide(n){
+    slides.forEach(s => {
+        s.classList.remove('active');
+        s.classList.remove('active-info');
+    });
+    slides[n].classList.add('active');
+    updateDots();
+}
+
+function nextSlide(){
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+
+function prevSlide(){
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+}
+
+function goToSlide(n){
+    currentSlide = n;
+    showSlide(currentSlide);
+}
+
+// Auto slide
+let autoSlide = setInterval(nextSlide, 5000);
+
+// Pause on hover
+const sliderEl = document.getElementById('slider');
+sliderEl.addEventListener('mouseenter', () => clearInterval(autoSlide));
+sliderEl.addEventListener('mouseleave', () => {
+    autoSlide = setInterval(nextSlide, 5000);
+});
+
+/* Toggle info */
+document.querySelectorAll(".toggle-btn").forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const slide = btn.parentElement;
+        slide.classList.toggle("active-info");
+    });
+});
+
+/* 🍁 LEAVES */
+const leafEmojis = ['🍁', '🍂'];
+for(let i = 0; i < 25; i++){
+    let leaf = document.createElement("div");
+    leaf.className = "leaf";
+    leaf.innerHTML = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+    leaf.style.left = Math.random() * 100 + "%";
+    leaf.style.animationDuration = (6 + Math.random() * 8) + "s";
+    leaf.style.animationDelay = Math.random() * 10 + "s";
+    leaf.style.fontSize = (14 + Math.random() * 16) + "px";
+    leaf.style.opacity = (0.4 + Math.random() * 0.6);
+    document.body.appendChild(leaf);
+}
+
+/* ✨ PARTICLES */
+for(let i = 0; i < 15; i++){
+    let p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (10 + Math.random() * 20) + 's';
+    p.style.animationDelay = Math.random() * 15 + 's';
+    p.style.width = (2 + Math.random() * 4) + 'px';
+    p.style.height = p.style.width;
+    document.body.appendChild(p);
+}
+
+/* 👁️ SCROLL REVEAL */
+const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+['intro', 'sliderSection', 'cardsSection'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) observer.observe(el);
+});
+
+/* Touch swipe for slider */
+let touchStartX = 0;
+let touchEndX = 0;
+
+sliderEl.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+}, {passive: true});
+
+sliderEl.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    if(touchStartX - touchEndX > 50) nextSlide();
+    if(touchEndX - touchStartX > 50) prevSlide();
+}, {passive: true});
+</script>
+
+</body>
+</html>
