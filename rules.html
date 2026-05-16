@@ -316,13 +316,27 @@ z-index:999;
         transform: scale(1);
     }
 }
+/* زر العودة */
+.back-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #ff7b00, #ffae42);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: 0 0 15px orange;
+    transition: 0.3s;
+}
 
+.back-btn:hover {
+    transform: scale(1.1);
+}
     </style>
 
 <div class="fog"></div>
 <nav class="nav-container">
     <a href="./index.html" class="menu-item">⬅️ العودة للمملكة</a>
-    <a href="./engazat.html" class="menu-item">انجازات</a>
+    <a href="./achievements.html" class="menu-item">انجازات</a>
         <a href="./developer.html" class="menu-item">المطوّر</a>
 
 </nav>
@@ -389,6 +403,10 @@ z-index:999;
         <li>إرسال صور للوجوه</li>
         <li>افتعال المشاكل</li>
     </ul>
+</div>
+
+<div style="text-align:center; margin-top:20px;">
+<a href="#" onclick="history.back(); return false;" class="back-btn">⬅️ العودة</a>
 </div>
 
 <footer class="royal-footer">

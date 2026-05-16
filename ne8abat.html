@@ -440,6 +440,22 @@ box-shadow:0 0 25px var(--glow);
     100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
+/* زر العودة */
+.back-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #ff7b00, #ffae42);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: 0 0 15px orange;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+}
+
 /* FOOTER */
 footer {
     text-align: center;
@@ -479,6 +495,14 @@ footer {
         <span class="rank">استا</span>
         <h3>اسبادا</h3>
         <span class="icon">🕸</span>
+    </div>
+</a>
+
+<a href="javascript:void(0)" class="card-link">
+    <div class="card mother" style="--bg:url('./assets/images/ne8abat/cicada.jpg')">
+        <span class="rank">كيلوا</span>
+        <h3>سيكادا</h3>
+        <span class="icon">🍂</span>
     </div>
 </a>
 
@@ -539,6 +563,14 @@ footer {
 </div>
 
 <a href="javascript:void(0)" class="card-link">
+    <div class="card mother" style="--bg:url('./assets/images/ne8abat/grand.jpg')">
+        <span class="rank">هيمورا / تسونادي</span>
+        <h3>جراند لاين</h3>
+        <span class="icon">🌊</span>
+    </div>
+</a>
+
+<a href="javascript:void(0)" class="card-link">
 <div class="card mother" style="--bg:url('./assets/images/ne8abat/velaris.jpg')">
     <span class="rank">شادو </span>
     <h3>فيلاريس </h3>
@@ -572,6 +604,10 @@ footer {
   <span class="text">𝑲𝒉𝒂𝒍𝒊𝒅 – 𝑨𝒔𝒕𝒂 ♕</span>
   <span class="code-icon">&lt;/&gt;</span>
 </a>
+
+<div style="text-align:center; margin-top:20px;">
+<a href="#" onclick="history.back(); return false;" class="back-btn">⬅️ العودة</a>
+</div>
 
 <footer>
 © 2026 Jura Forest 🍁 - نقابات المملكة

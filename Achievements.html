@@ -2,7 +2,7 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>الأقاليم | Jura Forest 🍁</title>
+<title>الإنجازات | Jura Forest 🍁</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -85,7 +85,7 @@ animation:fadeDown 1s ease;
 }
 
 .hero h1{
-font-size:2.5rem;
+font-size:2.8rem;
 color:var(--orange-soft);
 text-shadow:0 0 25px var(--glow);
 }
@@ -120,30 +120,6 @@ transition:.4s;
 animation:rise 1s ease forwards;
 opacity:0;
 }
-
-.achievement-card {
-    display: block; /* لجعل الكارت قابل للضغط بالكامل */
-    text-decoration: none; /* لإزالة الخط تحت النص */
-    color: inherit; /* للحفاظ على لون النص الأصلي */
-    
-    /* تنسيقات الخلفية */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    /* تأكد أن الكارت له أبعاد محددة ليظهر بوضوح */
-    min-height: 200px; 
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-}
-
-/* تأثير بسيط عند تمرير الماوس */
-.achievement-card:hover {
-    transform: scale(1.02);
-    transition: 0.3s;
-}
-
 
 /* 🔥 Glow Hover */
 .achievement-card:hover{
@@ -228,42 +204,38 @@ border-top:1px solid var(--border);
 <body>
 
 <nav class="nav-container">
-<a href="./index.html" class="menu-item">⬅️ رجوع للمملكة</a>
+<a href="./index.html" class="menu-item">⬅️ الرجوع</a>
 <a href="./developer.html" class="menu-item">المطوّر</a>
-<a href="./ne8abat.html" class="menu-item">النقابات</a>
-
+<a href="./rules.html" class="menu-item">القوانين</a>
 </nav>
 
 <header class="hero">
-<h1>🗺 أقاليم الممكلة 🗺</h1>
-<p>اضغط علي الإقليم لعرض معلوماته</p>
+<h1>🏆 إنجازات جورا فورست 🍁</h1>
+<p>القوة تُكتب بالأفعال… لا بالكلام</p>
 </header>
 
 <section class="achievements">
 
-    <!-- الكارت الأول -->
-    <a href="nagasaki.html" class="achievement-card" style="animation-delay: .4s; background-image: url('assets/images/jura/nagasakii.jpg');">
-        <div class="achievement-number">☣️</div>
-        <div class="achievement-text">
-            <br><br><br><br>إقليم ناجازاكي
-        </div>
-    </a>
+<div class="achievement-card" style="animation-delay:.4s">
+<div class="achievement-number">16</div>
+<div class="achievement-text">
+نقابات نشطة تعمل<br>بكفاءة عالية
+</div>
+</div>
 
-    <!-- الكارت الثاني -->
-    <a href="ashura.html" class="achievement-card" style="animation-delay: .6s; background-image: url('assets/images/jura/ashuraa.jpg');">
-        <div class="achievement-number">🌑</div>
-        <div class="achievement-text">
-            <br><br><br><br>إقليم اشورا
-        </div>
-    </a>
+<div class="achievement-card" style="animation-delay:.6s">
+<div class="achievement-number">01</div>
+<div class="achievement-text">
+أول نقابة في المملكة<br><strong>هورايزن</strong>
+</div>
+</div>
 
-    <!-- الكارت الثالث -->
-    <a href="frood.html" class="achievement-card" style="animation-delay: .8s; background-image: url('assets/images/jura/frood.jpg');">
-        <div class="achievement-number">🍀</div>
-        <div class="achievement-text">
-            <br><br><br><br>إقليم فرود
-        </div>
-    </a>
+<div class="achievement-card" style="animation-delay:.8s">
+<div class="achievement-number">★</div>
+<div class="achievement-text">
+أفضل مملكة في التنظيم<br>والقوانين
+</div>
+</div>
 
 </section>
 
